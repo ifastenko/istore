@@ -9,12 +9,16 @@ import org.springframework.stereotype.Repository;
 import com.istore.model.Category;
 
 @Repository("CategoryIstoreDAO")
-public class CategoryIstoreDAO implements IstoreDAO {
+public abstract class CategoryIstoreDAO implements IstoreDAO {
 
     @Autowired
     private SessionFactory sessionFactory;
 
     public List<?> getAllItems() {
         return sessionFactory.getCurrentSession().createCriteria(Category.class).list();
+    }
+
+    public Object getItemById(Integer catid) {
+        return null;
     }
 }

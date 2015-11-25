@@ -1,15 +1,26 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri='http://java.sun.com/jsp/jstl/core' prefix="c"%>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>Internet Store - catalog</title>
+    <style type="text/css">
+        table {
+            border: 1px solid #000;
+            border-collapse: collapse;
+        }
+        table td {
+            border: 1px solid #000;
+        }
+        table.products {
+            float: left;
+        }
+    </style>
 </head>
 <body>
-<div id='container'>
-    <table>
+    <table class="products">
         <thead>
         <tr>
             <th>ID</th>
@@ -23,17 +34,27 @@
         <tbody>
         <c:forEach items="${products}" var="product">
             <tr>
-                <td><c:out value="${product.id}" /></td>
-                <td><c:out value="${product.category}" /></td>
-                <td><c:out value="${product.title}" /></td>
-                <td><c:out value="${product.count}" /></td>
+                <td><c:out value="${product.aid}" /></td>
+                <td>
+                    <a href="category?catid=<c:out value="${product.category.id}"/>">
+                        <c:out value="${product.category.name}"/>
+                    </a>
+                </td>
+                <td>
+                    <a href="product?id=<c:out value="${product.aid}"/>">
+                        <c:out value="${product.title}"/>
+                    </a>
+                </td>
+                <td><c:out value="${product.amount}" /></td>
                 <td><c:out value="${product.price}" /></td>
-                <td><button>Add to cart</button></td>
+                <td>
+                    <a href="/?product2cart=<c:out value="${product.aid}" />">Add to cart</a>
+                </td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
-    <!-- place for cart -->
-</div>
+    <div>Total $ is: <c:out value="${totalPrice}" />p</div>
+    <a href="/cart">Go to cart</a>
 </body>
 </html>

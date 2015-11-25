@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service("CategoryIstoreService")
-public class CategoryIstoreService implements IstoreService {
+public abstract class CategoryIstoreService implements IstoreService {
 
     @Autowired
     @Resource(name = "CategoryIstoreDAO")
@@ -18,5 +18,10 @@ public class CategoryIstoreService implements IstoreService {
     @Transactional
     public List<?> getAllItems() {
         return categoryDAO.getAllItems();
+    }
+
+    @Transactional
+    public Object getItemById(Integer catid) {
+        return null;
     }
 }

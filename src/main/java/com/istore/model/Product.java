@@ -18,7 +18,7 @@ public class Product {
     private Integer aid;
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "category_id")
     private Category category;
 
     @Column
@@ -28,12 +28,12 @@ public class Product {
     private Integer amount;
 
     @Column
-    private Double price;
+    private Integer price;
 
     public Product() {
     }
 
-    public Product(Integer id, Integer aid, Category category, String title, Integer amount, Double price) {
+    public Product(Integer id, Integer aid, Category category, String title, Integer amount, Integer price) {
         this.id = id;
         this.aid = aid;
         this.category = category;
@@ -82,11 +82,11 @@ public class Product {
         this.amount = amount;
     }
 
-    public Double getPrice() {
+    public Integer getPrice() {
         return this.price;
     }
 
-    public void setPrice(Double price) {
+    public void setPrice(Integer price) {
         this.price = price;
     }
 }

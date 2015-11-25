@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import com.istore.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,5 +19,19 @@ public class ProductIstoreService implements IstoreService {
     @Transactional
     public List<?> getAllItems() {
         return productDAO.getAllItems();
+    }
+
+    @Transactional
+    public Product getItemById(Integer productid) {
+        return (Product)productDAO.getItemById(productid);
+    }
+
+    @Transactional
+    public List<?> getCategoryItems(Integer catid) {
+        return productDAO.getCategoryItems(catid);
+    }
+
+    public void save(Product product){
+        productDAO.update(product);
     }
 }
